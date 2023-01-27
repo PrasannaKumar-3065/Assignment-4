@@ -6,14 +6,14 @@ import java.util.logging.*;
     - A static method that returns an instance of the class (following the singleton pattern).
     - A method that returns a new connection to the database.
     - A method that closes all open connections and releases them back to the pool.*/
-class connect{
+class CONNECT{
     String con;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    static connect instance(String s){
-        connect c = new connect(s);
+    static CONNECT instance(String s){
+        CONNECT c = new CONNECT(s);
         return c;
     }
-    private connect(String con){
+    private CONNECT(String con){
         this.con = con;
         String s = ""+con;
         LOGGER.info(s);
@@ -38,12 +38,12 @@ public class App
             if(m == 1){
                 s = sc.next();
                 LOGGER.info("Enter connection: ");
-                connect c = connect.instance(s);
+                CONNECT c = CONNECT.instance(s);
                 String msg = "Connected "+c.con;
                 LOGGER.info(msg);
             }
             else if(m == 2){
-                connect c = connect.instance(s);
+                CONNECT c = CONNECT.instance(s);
                 c.close();
             }
             else{
