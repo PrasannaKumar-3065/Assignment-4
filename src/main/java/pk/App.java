@@ -10,8 +10,7 @@ class CONNECT{
     String con;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
     static CONNECT instance(String s){
-        CONNECT c = new CONNECT(s);
-        return c;
+        return new CONNECT(s);
     }
     private CONNECT(String con){
         this.con = con;
