@@ -1,9 +1,8 @@
 package pk;
-import java.io.IOException;
 import java.util.*;
 import java.util.logging.*;
 class CONNECT{
-    String con;
+    static String con;
     static CONNECT c=null;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
     static CONNECT instance(String con){
@@ -15,8 +14,8 @@ class CONNECT{
         String s = con;
         LOGGER.info(s);
     }
-    void close() {
-        this.con = "closed";
+    static void close() {
+        CONNECT.con = "closed";
         c = null;
         LOGGER.info("Connection closed");
     }
