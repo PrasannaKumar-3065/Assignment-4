@@ -16,7 +16,6 @@ class CONNECT{
     }
     void close() {
         this.con = "closed";
-        CONNECT.c = null;
         LOGGER.info("Connection closed");
     }
 }
@@ -48,6 +47,7 @@ public class App
                     }
                     else if(m==3){
                         ((CONNECT)c).close();
+                        CONNECT.c = null;
                     }
                     else{
                         n=1;
