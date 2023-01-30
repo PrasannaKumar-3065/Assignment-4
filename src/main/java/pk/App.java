@@ -21,7 +21,7 @@ class CONNECT{
 public class App 
 {
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    public static void main( String[] args ) throws ClassNotFoundException
+    public static void main( String[] args )
     {
         Scanner sc = new Scanner(System.in);
         LOGGER.info("Enter connection string: "); 
