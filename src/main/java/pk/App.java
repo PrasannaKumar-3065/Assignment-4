@@ -5,8 +5,7 @@ class connect{
     String con;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
     static Object instance(String con){
-        connect c = new connect(con);
-        return c;
+        return new connect(con); 
     }
     private connect(String con){
         this.con = con;
