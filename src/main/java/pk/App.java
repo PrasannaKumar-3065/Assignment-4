@@ -37,17 +37,17 @@ public class App
                     int m = sc.nextInt();
                     if(m==1){
                         LOGGER.info("Enter connection string: "); 
-                        ((CONNECT)c).con = sc.next();
-                        s = "Connection changed to: "+((CONNECT)c).con;
+                        CONNECT.con = sc.next();
+                        s = "Connection changed to: "+CONNECT.con;
                         LOGGER.info(s); 
 
                     }
                     else if(m==2){
-                        s = c+" Connected to: "+((CONNECT)c).con;
+                        s = c+" Connected to: "+CONNECT.con;
                         LOGGER.info(s);
                     }
                     else if(m==3){
-                        ((CONNECT)c).close();
+                        CONNECT.close();
                     }
                     else{
                         n=1;
