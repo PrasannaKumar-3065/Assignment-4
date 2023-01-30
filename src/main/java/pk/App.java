@@ -20,14 +20,14 @@ class CONNECT{
 public class App 
 {
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    public static void main( String[] args )
+    public static void main( String[] args ) throws ClassNotFoundException
     {
         Scanner sc = new Scanner(System.in);
         LOGGER.info("Enter connection string: "); 
         String s = sc.next();
         Object c = CONNECT.instance(s);
         int n = 0;
-        do{
+        while(n==0){
             LOGGER.info("1.Edit conection 2.view connection 3.close 4.exit");
             int m = sc.nextInt();
             if(m==1){
@@ -47,7 +47,7 @@ public class App
             else{
                 n=1;
             }
-        }while(n == 0);
+        }
 
         ((CONNECT)c).close();
     }
