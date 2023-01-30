@@ -1,4 +1,5 @@
 package pk;
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.*;
 class CONNECT{
@@ -25,7 +26,12 @@ public class App
         Scanner sc = new Scanner(System.in);
         LOGGER.info("Enter connection string: "); 
         String s = sc.next();
+        try{
         Object c = CONNECT.instance(s);
+        }catch(ClassNotFoundException e){
+            s = ""+e.getClass();
+            LOGGER.info(s);
+        }
         int n = 0;
         while(n==0){
             LOGGER.info("1.Edit conection 2.view connection 3.close 4.exit");
