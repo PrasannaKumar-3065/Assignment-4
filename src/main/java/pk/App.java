@@ -2,20 +2,20 @@ package pk;
 import java.util.*;
 import java.util.logging.*;
 class CONNECT{
-    static String con;
+    String con;
     static CONNECT c=null;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
     static CONNECT instance(String con){
         c = new CONNECT(con);
         return c; 
     }
-    private CONNECT(String con1){
-        CONNECT.con = con1;
+    private CONNECT(String con){
+        this.con = con;
         String s = con;
         LOGGER.info(s);
     }
-    static void close() {
-        CONNECT.con = "closed";
+    void close() {
+        this.con = "closed";
         c = null;
         LOGGER.info("Connection closed");
     }
@@ -37,17 +37,17 @@ public class App
                     int m = sc.nextInt();
                     if(m==1){
                         LOGGER.info("Enter connection string: "); 
-                        CONNECT.con = sc.next();
-                        s = "Connection changed to: "+CONNECT.con;
+                        ((CONNECT)c).con = sc.next();
+                        s = "Connection changed to: "+((CONNECT)c).con;
                         LOGGER.info(s); 
 
                     }
                     else if(m==2){
-                        s = c+" Connected to: "+CONNECT.con;
+                        s = c+" Connected to: "+((CONNECT)c).con;
                         LOGGER.info(s);
                     }
                     else if(m==3){
-                        CONNECT.close();
+                        ((CONNECT)c).close();
                     }
                     else{
                         n=1;
