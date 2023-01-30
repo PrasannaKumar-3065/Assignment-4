@@ -4,9 +4,11 @@ import java.util.*;
 import java.util.logging.*;
 class CONNECT{
     String con;
+    static CONNECT c=null;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    static Object instance(String con){
-        return new CONNECT(con); 
+    static CONNECT instance(String con){
+        c = new CONNECT(con);
+        return c; 
     }
     private CONNECT(String con){
         this.con = con;
@@ -15,6 +17,7 @@ class CONNECT{
     }
     void close() {
         this.con = "closed";
+        c = null;
         LOGGER.info("Connection closed");
     }
 }
@@ -23,38 +26,38 @@ public class App
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
     public static void main( String[] args )
     {
-        Scanner sc = new Scanner(System.in);
-        LOGGER.info("Enter connection string: "); 
-        String s = sc.next();
-        try{
-        Object c = CONNECT.instance(s);
-        }catch(ClassNotFoundException e){
-            s = ""+e.getClass();
-            LOGGER.info(s);
-        }
-        int n = 0;
-        while(n==0){
-            LOGGER.info("1.Edit conection 2.view connection 3.close 4.exit");
-            int m = sc.nextInt();
-            if(m==1){
-                LOGGER.info("Enter connection string: "); 
-                ((CONNECT)c).con = sc.next();
-                s = "Connection changed to: "+((CONNECT)c).con;
-                LOGGER.info(s); 
+        
+            Scanner sc = new Scanner(System.in);
+            LOGGER.info("Enter connection string: "); 
+            String s = sc.next();
+            Object c = CONNECT.instance(s);
+            int n = 0;
+            while(n==0){
+                try{
+                    LOGGER.info("1.Edit conection 2.view connection 3.close 4.exit");
+                    int m = sc.nextInt();
+                    if(m==1){
+                        LOGGER.info("Enter connection string: "); 
+                        ((CONNECT)c).con = sc.next();
+                        s = "Connection changed to: "+((CONNECT)c).con;
+                        LOGGER.info(s); 
 
+                    }
+                    else if(m==2){
+                        s = ((CONNECT)c)+" Connected to: "+((CONNECT)c).con;
+                        LOGGER.info(s);
+                    }
+                    else if(m==3){
+                        ((CONNECT)c).close();
+                    }
+                    else{
+                        n=1;
+                    }
+                }catch(Exception e){
+                    LOGGER.info("Input mismatch");
+                    sc.nextLine();
+                }
             }
-            else if(m==2){
-                s = "Connected to: "+((CONNECT)c).con;
-                LOGGER.info(s);
-            }
-            else if(m==3){
-                ((CONNECT)c).close();
-            }
-            else{
-                n=1;
-            }
-        }
-
-        ((CONNECT)c).close();
+        
     }
 }
