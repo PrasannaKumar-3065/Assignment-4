@@ -10,7 +10,7 @@ class CONNECT{
         return c; 
     }
     private CONNECT(String con){
-        this.con = con;
+        CONNECT.con = con;
         String s = con;
         LOGGER.info(s);
     }
