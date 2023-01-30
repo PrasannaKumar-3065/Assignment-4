@@ -16,7 +16,7 @@ class CONNECT{
     }
     void close() {
         this.con = "closed";
-        c = null;
+        CONNECT.c = null;
         LOGGER.info("Connection closed");
     }
 }
