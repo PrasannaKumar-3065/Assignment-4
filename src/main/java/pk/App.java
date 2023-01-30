@@ -1,20 +1,16 @@
 package pk;
 import java.util.*;
 import java.util.logging.*;
-/*"1. Design a class for a simple database connection pool. The class should have the following features:
-    - A private constructor to prevent the class from being instantiated directly.
-    - A static method that returns an instance of the class (following the singleton pattern).
-    - A method that returns a new connection to the database.
-    - A method that closes all open connections and releases them back to the pool.*/
-class CONNECT{
+class connect{
     String con;
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    static CONNECT instance(String s){
-        return new CONNECT(s);
+    static Object instance(String con){
+        connect c = new connect(con);
+        return c;
     }
-    private CONNECT(String con){
+    private connect(String con){
         this.con = con;
-        String s = ""+con;
+        String s = con;
         LOGGER.info(s);
     }
     void close() {
@@ -28,26 +24,32 @@ public class App
     public static void main( String[] args )
     {
         Scanner sc = new Scanner(System.in);
-        LOGGER.info("Enter connection: ");
+        LOGGER.info("Enter connection string: "); 
         String s = sc.next();
+        Object c = connect.instance(s);
         int n = 0;
         do{
-            LOGGER.info("1.Change connection 2.close 3.exit");
+            LOGGER.info("1.Edit conection 2.view connection 3.close 4.exit");
             int m = sc.nextInt();
-            if(m == 1){
-                s = sc.next();
-                LOGGER.info("Enter connection: ");
-                CONNECT c = CONNECT.instance(s);
-                String msg = "Connected "+c.con;
-                LOGGER.info(msg);
+            if(m==1){
+                LOGGER.info("Enter connection string: "); 
+                ((connect)c).con = sc.next();
+                s = "Connection changed to: "+((connect)c).con;
+                LOGGER.info(s); 
+
             }
-            else if(m == 2){
-                CONNECT c = CONNECT.instance(s);
-                c.close();
+            else if(m==2){
+                s = "Connected to: "+((connect)c).con;
+                LOGGER.info(s);
+            }
+            else if(m==3){
+                ((connect)c).close();
             }
             else{
-                n = 1;
+                n=1;
             }
         }while(n == 0);
+
+        ((connect)c).close();
     }
 }
