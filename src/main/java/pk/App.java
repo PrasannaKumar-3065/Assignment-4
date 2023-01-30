@@ -44,7 +44,7 @@ public class App
 
                     }
                     else if(m==2){
-                        s = ((CONNECT)c)+" Connected to: "+((CONNECT)c).con;
+                        s = c+" Connected to: "+((CONNECT)c).con;
                         LOGGER.info(s);
                     }
                     else if(m==3){
