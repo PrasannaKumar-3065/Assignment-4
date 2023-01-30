@@ -9,8 +9,8 @@ class CONNECT{
         c = new CONNECT(con);
         return c; 
     }
-    private CONNECT(String con){
-        CONNECT.con = con;
+    private CONNECT(String con1){
+        CONNECT.con = con1;
         String s = con;
         LOGGER.info(s);
     }
