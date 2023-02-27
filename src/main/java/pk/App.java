@@ -1,24 +1,7 @@
 package pk;
 import java.util.*;
 import java.util.logging.*;
-class CONNECT{
-    String con;
-    static CONNECT c=null;
-    private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
-    static CONNECT instance(String con){
-        c = new CONNECT(con);
-        return c; 
-    }
-    private CONNECT(String con){
-        this.con = con;
-        String s = con;
-        LOGGER.info(s);
-    }
-    void close() {
-        this.con = "closed";
-        LOGGER.info("Connection closed");
-    }
-}
+
 public class App 
 {
     private static final Logger LOGGER =  Logger.getLogger("InfoLogging");
@@ -31,6 +14,7 @@ public class App
             Object c = CONNECT.instance(s);
             int n = 0;
             while(n==0){
+                try{
                     LOGGER.info("1.Edit conection 2.view connection 3.close 4.exit");
                     int m = sc.nextInt();
                     if(m==1){
@@ -51,6 +35,10 @@ public class App
                     else{
                         n=1;
                     }
+                }catch(Exception e){
+                    LOGGER.info("Input mismatch");
+                    sc.nextLine();
+                }
             }
         
     }
